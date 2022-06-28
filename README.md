@@ -115,3 +115,38 @@ $queue = $container->get(Queue::class);
 $queue->add(/* ... */);
 echo $queue->count(); //2
 ```
+
+### Invoking methods
+
+Let's assume the following class:
+
+```php
+class Person
+{
+    public function sayHello(string $name, string $surname = '')
+    {
+        echo "Hello $name $surname!";
+    }
+    
+    public function sendMailMessage(PHPMailer $mail)
+    {
+        //send routine...
+    }
+}
+
+$person = new Person();
+
+// Inform only required parameters
+$container->invoke($person, 'sayHello', [
+    'name' => 'John'
+]); //Hello John !
+
+// Inform required and optional parameters
+$container->invoke($person, 'sayHello', [
+    'name' => 'John',
+    'surname' => 'Doe',
+]); //Hello John Doe!
+
+// Mailer class automatically bound (auto wire)
+$container->invoke($person, 'sendMailMessage');
+```
