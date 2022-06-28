@@ -1,0 +1,15 @@
+{
+    "name": "corviz/di-container",
+    "description": "A simple yet powerful container with auto wiring",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "psr/container": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Corviz\\DI\\": "src"
+        }
+    }
+}
